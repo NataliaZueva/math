@@ -24,10 +24,7 @@ def multiplication_by_scalar(a, scal):
 def colinearity(a, b):
     """Проверка на колинеарность"""
     c = scalar_product(a, b) / (abs(vector_lenght(a)) * abs(vector_lenght(b)))
-    if abs(c) == 1:
-        return True
-    else:
-        return False
+    return abs(c) == 1
 
 
 def vector_lenght(a):

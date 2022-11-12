@@ -41,7 +41,6 @@ def sub(a, b):
 def transposition(a):
     """Транспонирование"""
     mat_0 = zero_matrix(len(a[0]), len(a))
-    print((mat_0))
     for i in range(len(a)):
         for j in range(len(a[0])):
             mat_0[j][i] = a[i][j]
@@ -75,7 +74,7 @@ def matrix_index_row(a, index):
     try:
         mat_0 = a[index]
     except IndexError:
-        print("Это ошибка индекса")
+        return "Это ошибка индекса"
     finally:
         return mat_0
 
@@ -90,7 +89,7 @@ def matrix_index_col(a, index):
     try:
         mat_00 = mat_0[index]
     except IndexError:
-        print("Это ошибка индекса")
+        return "Это ошибка индекса"
     finally:
         return mat_00
 
