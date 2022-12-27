@@ -1,11 +1,11 @@
 def zero_matrix(row, col):
-    return [[0 for i in range(col)] for j in range(row)]
+    return [[0.0 for i in range(col)] for j in range(row)]
 
 
 def copy2d(a, do_copy=True):
     if do_copy:
         return [b[:] for b in a]
-    return b
+    return a
 
 
 def swap_rows(a, i, i2, do_copy=True):
@@ -35,7 +35,7 @@ def sub(a, b):
                 mat_0[i][j] = a[i][j] - b[i][j]
         return mat_0
     else:
-        return "Матрицы разных размеров"
+        return None
 
 
 def transposition(a):
@@ -74,7 +74,7 @@ def matrix_index_row(a, index):
     try:
         mat_0 = a[index]
     except IndexError:
-        return "Это ошибка индекса"
+        raise
     finally:
         return mat_0
 
@@ -89,7 +89,7 @@ def matrix_index_col(a, index):
     try:
         mat_00 = mat_0[index]
     except IndexError:
-        return "Это ошибка индекса"
+        raise
     finally:
         return mat_00
 
@@ -106,6 +106,15 @@ def multiplication_index_scalar(a, index, scal):
     mat_0 = copy2d(a, do_copy)
     for j in range(len(a[0])):
         mat_0[index][j] = mat_0[index][j] * scal
+    return mat_0
+
+
+def division_index_scalar(a, index, scal):
+    """Деление одной строки матрицы на число (по заданному индексу)"""
+    do_copy = zero_matrix(len(a), len(a[0]))
+    mat_0 = copy2d(a, do_copy)
+    for j in range(len(a[0])):
+        mat_0[index][j] = mat_0[index][j] / scal
     return mat_0
 
 

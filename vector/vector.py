@@ -8,7 +8,12 @@ def add(a, b):
 
 def sub(a, b):
     '''Вычитание векторов'''
-    return [x - y for x, y in zip(a, b)]
+    return [abs(x - y) for x, y in zip(a, b)]
+
+
+def sub_abs(a, b):
+    """Вычитание векторов"""
+    return [abs(x - y) for x, y in zip(a, b)]
 
 
 def scalar_product(a, b):

@@ -17,6 +17,14 @@ def test_sub():
     assert res == exp
 
 
+def test_sub_abs():
+    a = [1, 2, 5]
+    b = [4, 8, 1]
+    exp = [-3, -6, 4]
+    res = sub(a, b)
+    assert res == exp
+
+
 def test_scalar_product():
     a = [3, 4]
     b = [4, 3]

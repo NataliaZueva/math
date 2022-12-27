@@ -72,6 +72,14 @@ def test_multiplication_index_scalar():
     assert res == exp
 
 
+def test_division_index_scalar():
+    a = [[1, 1, 1], [2, 2, 2], [3, 3, 3]]
+    index, scal = 1, 2
+    exp = [[1, 1, 1], [1, 1, 1], [3, 3, 3]]
+    res = division_index_scalar(a, index, scal)
+    assert res == exp
+
+
 def test_add_or_sub_strings_number():
     a = [[1, 2], [3, 4]]
     arithmetic, i, i2, k = '-', 1, 0, 2
