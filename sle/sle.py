@@ -28,9 +28,10 @@ def cut_matrix(matrix: list, stripe: int, parameter: int) -> list:
 
 
 def filling_matrix_cut(matrix: list, matrix_cut: list, parameter: int) -> list:
+    n1 = len(matrix) - 1
     if len(matrix_cut) == 1 and parameter == 1:
-        matrix[1][1] = round(matrix_cut[0][0], 2)
-        matrix[1][2] = round(matrix_cut[0][1], 2)
+        matrix[n1][n1] = round(matrix_cut[0][0], 2)
+        matrix[n1][n1 + 1] = round(matrix_cut[0][1], 2)
     else:
         if len(matrix) != len(matrix_cut):
             no = len(matrix) - len(matrix_cut)
@@ -42,12 +43,13 @@ def filling_matrix_cut(matrix: list, matrix_cut: list, parameter: int) -> list:
 
 def moving_rows(matrix: list, stripe: int) -> list:
     """Поиск максимального элемента"""
-    res_mat = cut_matrix(matrix, stripe, 1)
+    # res_mat = cut_matrix(matrix, stripe, 1)
+    res_mat = matrix
     m_col = matrix_index_col(res_mat, 0)
     index = leading_element_index(m_col)
     res_mat = permutation(res_mat, 0, index)
-    matrix = filling_matrix_cut(matrix, res_mat, 1)
-    return matrix
+    # matrix = filling_matrix_cut(matrix, res_mat, 1)
+    return res_mat
 
 
 def normalization_levels(matrix: list, stripe: int) -> list:
@@ -95,6 +97,7 @@ def gauss(matrix: list) -> list:
 def answer(matrix):
     res_mat = gauss(matrix)
     ans = []
+    ans1 = zero_matrix(len(matrix), len(matrix))
     k = 0
     for i in reversed(res_mat):
         k += 1
@@ -103,7 +106,14 @@ def answer(matrix):
                 if not ans:
                     ans.append(i[j + k])
                 else:
-                    num = i[j + k]
-                    ans.append(num)
+                    if j + k <= len(matrix):
+                        num = i[j + k]
+                        ans.append(num)
+    for i in range(len(matrix)):
+        for j in range(len(matrix)):
+            ans1[i][j] = res_mat[i][j]
     ans = ans[::-1]
+    ans = np.linalg.solve(ans1, ans)
+    for j in range(len(ans)):
+        ans[j] = round(ans[j], 1)
     return ans
