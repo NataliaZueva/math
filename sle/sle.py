@@ -29,8 +29,8 @@ def cut_matrix(matrix: list, stripe: int, parameter: int) -> list:
 
 def filling_matrix_cut(matrix: list, matrix_cut: list, parameter: int) -> list:
     if len(matrix_cut) == 1 and parameter == 1:
-        matrix[2][2] = matrix_cut[0][0]
-        matrix[2][3] = matrix_cut[0][1]
+        matrix[1][1] = round(matrix_cut[0][0], 2)
+        matrix[1][2] = round(matrix_cut[0][1], 2)
     else:
         if len(matrix) != len(matrix_cut):
             no = len(matrix) - len(matrix_cut)
@@ -90,3 +90,20 @@ def gauss(matrix: list) -> list:
             result_matrix[i] = normalization_levels(result_matrix[i], j)
         result_matrix = subtracting_first_line(result_matrix, j)
     return result_matrix
+
+
+def answer(matrix):
+    res_mat = gauss(matrix)
+    ans = []
+    k = 0
+    for i in reversed(res_mat):
+        k += 1
+        for j in range(len(res_mat[0])):
+            if i[j] == 1:
+                if not ans:
+                    ans.append(i[j + k])
+                else:
+                    num = i[j + k]
+                    ans.append(num)
+    ans = ans[::-1]
+    return ans

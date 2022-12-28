@@ -2,9 +2,8 @@ from sle import *
 
 global myA, myB
 myA = [
-    [5, 2, 1, 47],
-    [2, 4, 1, 36],
-    [2, 3, 4, 37]
+    [2, 1, 5],
+    [6, 1, 9]
 ]
 
 myB = [

@@ -38,12 +38,9 @@ def forward_stroke(matrix):
     m = connection(matrix)
     n = len(m)
     for k in range(n):
-        # 1) Swap k-row with one of the underlying if m[k, k] = 0
         swap_row = pick_nonzero_row(m, k)
         if swap_row != k:
-            print('111', np.copy(m[k, :]))
             m[k, :], m[swap_row, :] = m[swap_row, :], np.copy(m[k, :])
-        # 2) Make diagonal element equals to 1
         if m[k][k] != 1:
             num = m[k][k]
             for i in range(len(m[0])):
@@ -80,9 +77,5 @@ def answer(m):
 def inverse_matrix(matrix):
     m = forward_stroke(matrix)
     m = reverse_stroke(m)
-    print(m)
     m = answer(m)
     return m
-
-
-print(inverse_matrix(matrix_origin))
