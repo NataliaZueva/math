@@ -22,13 +22,13 @@ def test_leading_element_index():
 
 def test_cut_matrix():
     exp = [[4, 1, 36], [3, 4, 37]]
-    res = cut_matrix(myA, 1)
+    res = cut_matrix(myA, 1, 1)
     assert res == exp
 
 
 def test_filling_matrix_cut():
     exp = [[5, 2, 1, 47], [2, 100, 100, 100], [2, 100, 100, 100]]
-    res = filling_matrix_cut(myA, myB)
+    res = filling_matrix_cut(myA, myB, 1)
     assert res == exp
 
 
